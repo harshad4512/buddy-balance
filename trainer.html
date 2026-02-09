@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <meta charset="UTF-8">
+  <title>Personal Trainer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<script>
+  if (!localStorage.getItem("authUser")) {
+    window.location.href = "auth.html";
+  }
+</script>
+
+<nav class="navbar">
+  <span class="brand">Buddy Balance</span>
+  <ul class="menu">
+    <li><a href="habits.html">Habit Tracker</a></li>
+    <li><a href="metrics.html">Body Metrics</a></li>
+    <li><a href="trainer.html" class="active">Personal Trainer</a></li>
+  </ul>
+</nav>
+
+<div class="trainer-container">
+
+  <h2>Personal Trainer</h2>
+<select id="langSelect" class="lang-select">
+  <option value="en">English</option>
+  <option value="hi">Hindi</option>
+  <option value="mr">Marathi</option>
+</select>
+<label class="voice-toggle">
+  <input type="checkbox" id="voiceToggle" checked>
+  Voice Trainer
+</label>
+
+  <!-- QUICK QUESTIONS -->
+  <div class="quick-questions">
+    <button data-q="habit">Analyze my habits</button>
+    <button data-q="body">Analyze my body</button>
+    <button data-q="workout">Workout plan</button>
+    <button data-q="diet">Diet plan</button>
+    <button data-q="weekly">Weekly advice</button>
+  </div>
+<button id="downloadReport" class="report-btn">
+  Download Weekly Report (PDF)
+</button>
+
+  <!-- CHAT -->
+  <div class="chat-box" id="chatBox"></div>
+
+  <!-- INPUT -->
+  <div class="chat-input">
+    <input id="userQuestion" placeholder="Ask your trainer..." />
+    <button id="sendBtn">Send</button>
+  </div>
+
+</div>
+
+<script src="trainer.js"></script>
+</body>
+</html>

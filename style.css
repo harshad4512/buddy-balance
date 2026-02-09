@@ -1,0 +1,811 @@
+/* ================= GLOBAL PAGE ANIMATION ================= */
+
+body {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+/* ================= GLOBAL STYLES ================= */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0b0b0b;
+  color: #fff;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* SIDEBARS */
+.sidebar, .rightbar {
+  width: 240px;
+  background: #111;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.sidebar input {
+  width: 100%;
+  padding: 8px;
+  background: #1a1a1a;
+  border: none;
+  color: #fff;
+  margin-bottom: 10px;
+}
+/* HABIT LIST ITEM */
+#habitList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-habit {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.delete-habit:hover {
+  color: #ff4d4d;
+}
+
+/* CENTER */
+.dashboard {
+  flex: 1;
+  padding: 16px;
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.today-box {
+  background: #1a1a1a;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* BARS */
+.daily-bars, .weekly-bars {
+  display: flex;
+  gap: 6px;
+  margin: 16px 0;
+  overflow-x: auto;
+}
+
+.day-bar {
+  width: 14px;
+  height: 70px;
+  background: #222;
+  display: flex;
+  align-items: flex-end;
+}
+
+.day-bar-fill {
+  width: 100%;
+  background: #c7ff00;
+  transition: height 0.3s ease;
+}
+
+/* GRID */
+.grid-wrapper {
+  overflow: auto;
+  max-height: 60vh;
+  border: 1px solid #222;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #222;
+  padding: 6px;
+  font-size: 0.8rem;
+}
+
+/* HIDE SCROLLBARS */
+.sidebar::-webkit-scrollbar,
+.rightbar::-webkit-scrollbar,
+.grid-wrapper::-webkit-scrollbar,
+.daily-bars::-webkit-scrollbar,
+.weekly-bars::-webkit-scrollbar {
+  width: 0;
+}
+
+.sidebar,
+.rightbar,
+.grid-wrapper,
+.daily-bars,
+.weekly-bars {
+  scrollbar-width: none;
+}
+.chart-label {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin: 12px 0 6px;
+}
+.week-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #aaa;
+}
+/* ================= PROFILE (FIXED SIZE, NO STRETCH) ================= */
+
+.profile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Fixed-size circular container */
+.photo-frame {
+  width: 130px;
+  height: 130px;
+  min-width: 130px;
+  min-height: 130px;
+
+  border-radius: 50%;
+  border: 3px solid #c7ff00;
+
+  overflow: hidden;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #1a1a1a;
+  cursor: pointer;
+}
+
+/* Image is FORCE-FIT, never resizes container */
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;   /* 🔑 this is the key */
+  object-position: center;
+
+  display: none;
+}
+
+/* Invisible file input */
+.photo-frame input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Motivational text */
+.quote {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #aaa;
+  text-align: center;
+  max-width: 200px;
+}
+/* ================= MOTIVATION QUOTE ANIMATION ================= */
+
+.quote {
+  transition: opacity 0.5s ease;
+}
+
+.quote.fade-out {
+  opacity: 0;
+}
+
+/* ================= LOGOUT BUTTON ================= */
+.logout-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #aaa;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.logout-btn:hover {
+  color: #fff;
+  border-color: #c7ff00;
+}
+/* ================= LOGOUT MODAL ================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #111;
+  padding: 22px;
+  border-radius: 14px;
+  width: 280px;
+  text-align: center;
+  animation: modalPop 0.3s ease;
+}
+
+.modal h3 {
+  margin-bottom: 8px;
+}
+
+.modal p {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-cancel {
+  background: transparent;
+  border: 1px solid #444;
+  color: #aaa;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.modal-confirm {
+  background: #c7ff00;
+  border: none;
+  color: #000;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* ================= BODY METRICS ================= */
+
+.metrics-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 12px;
+}
+
+/* Title */
+.metrics-container h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* Labels */
+.metrics-container label {
+  display: block;
+  margin-bottom: 4px;
+
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+/* Inputs & Selects */
+.metrics-container input,
+.metrics-container select {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+
+  background: #000;
+  border: 1px solid #333;
+  border-radius: 6px;
+
+  color: #fff;
+  outline: none;
+}
+
+/* Button */
+.metrics-container button {
+  width: 100%;
+  padding: 10px;
+
+  background: #00c853;
+  border: none;
+  border-radius: 8px;
+
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.metrics-container button:hover {
+  background: #00e676;
+}
+
+/* Results */
+.results {
+  margin-top: 16px;
+  font-size: 0.8rem;
+}
+
+/* Back Link */
+.back-link {
+  display: block;
+  margin-top: 16px;
+
+  text-align: center;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+
+/* ================= NAVBAR ================= */
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 20px;
+  background: #0b0b0b;
+  border-bottom: 1px solid #222;
+}
+
+/* Left side */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+/* Menu button (mobile only) */
+.menu-btn {
+  font-size: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: none; /* hidden on desktop */
+}
+
+/* Menu (desktop) */
+.menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.menu a {
+  color: #bbb;
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.menu a:hover,
+.menu a.active {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .menu {
+    position: absolute;
+    top: 56px;
+    left: 16px;
+    flex-direction: column;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 10px;
+    padding: 8px;
+    width: 200px;
+    display: none;
+  }
+
+  .menu li {
+    margin-bottom: 6px;
+  }
+
+  .menu li:last-child {
+    margin-bottom: 0;
+  }
+}
+/* ================= PERSONAL TRAINER ================= */
+
+.trainer-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 14px;
+}
+
+.trainer-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.trainer-summary {
+  background: #0b0b0b;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+}
+
+.trainer-summary p {
+  margin-bottom: 6px;
+}
+
+.trainer-suggestions h3 {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.trainer-suggestions ul {
+  list-style: none;
+  font-size: 0.8rem;
+}
+
+.trainer-suggestions li {
+  background: #1a1a1a;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+/* ================= TRAINER CHAT ================= */
+
+.chat-box {
+  background: #0f0f0f;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 16px;
+  height: 320px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.chat-message.user {
+  color: #00c853;
+}
+
+.chat-message.bot {
+  color: #ddd;
+}
+
+.chat-input {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  background: #000;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.chat-input button {
+  padding: 8px 14px;
+  border: none;
+  background: #00c853;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* ================= TRAINER CHAT ================= */
+
+.quick-questions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.quick-questions button {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #ccc;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.quick-questions button:hover {
+  background: #00c853;
+  color: #000;
+}
+
+.chat-box {
+  background: #0f0f0f;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 16px;
+  height: 320px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.chat-message.user {
+  color: #00c853;
+}
+
+.chat-message.bot {
+  color: #ddd;
+}
+
+.chat-input {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  background: #000;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.chat-input button {
+  padding: 8px 14px;
+  border: none;
+  background: #00c853;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* ================= REPORT BUTTON ================= */
+
+.report-btn {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.report-btn:hover {
+  background: #00c853;
+  color: #000;
+}
+/* ================= LANGUAGE SELECT ================= */
+
+.lang-select {
+  width: 100%;
+  margin: 10px 0 14px;
+  padding: 8px;
+  background: #000;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.8rem;
+}
+.voice-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+button,
+.quick-questions button {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover,
+.quick-questions button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+button,
+.quick-questions button {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover,
+.quick-questions button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+.chat-message {
+  animation: messageIn 0.25s ease;
+}
+
+@keyframes messageIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+tr {
+  animation: fadeRow 0.25s ease;
+}
+
+@keyframes fadeRow {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+.day-bar-fill {
+  transition: height 0.4s ease-in-out;
+}
+
+.weekly-bars .day-bar-fill {
+  transition: height 0.5s ease;
+}
+.modal {
+  animation: slideUp 0.25s ease;
+}
+/* ================= APP BRAND ================= */
+
+:root {
+  --brand-green: #00c853;
+  --brand-dark: #0b0b0b;
+  --brand-gray: #bdbdbd;
+}
+
+body {
+  font-family: "Poppins", system-ui, sans-serif;
+}
+/* ================= APP BRAND ================= */
+
+:root {
+  --brand-green: #00c853;
+  --brand-dark: #0b0b0b;
+  --brand-gray: #bdbdbd;
+}
+
+body {
+  font-family: "Poppins", system-ui, sans-serif;
+}
+.app-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--brand-green);
+}
+
+.app-title span {
+  color: var(--brand-gray);
+}
+/* ================= GLOBAL BUTTON THEME ================= */
+
+button,
+.primary-btn,
+.auth-btn,
+.logout-btn {
+  background: linear-gradient(135deg, #00c853, #00e676);
+  color: #000;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: 
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+button:hover,
+.primary-btn:hover,
+.auth-btn:hover,
+.logout-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 30px rgba(0, 200, 83, 0.35);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+/* Secondary buttons */
+.modal-cancel {
+  background: #111;
+  color: #aaa;
+  border: 1px solid #333;
+}
+
+.modal-cancel:hover {
+  background: #1a1a1a;
+  color: #fff;
+}

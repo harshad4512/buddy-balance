@@ -1,0 +1,58 @@
+/* ================= BODY METRICS ================= */
+
+.metrics-container {
+  max-width: 400px;
+  margin: 40px auto;
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #222;
+}
+
+.metrics-container h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.metrics-container label {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.metrics-container input,
+.metrics-container select {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+  background: #000;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.metrics-container button {
+  width: 100%;
+  padding: 10px;
+  background: #00c853;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.metrics-container button:hover {
+  background: #00e676;
+}
+
+.results {
+  margin-top: 16px;
+  font-size: 0.8rem;
+}
+
+.back-link {
+  display: block;
+  margin-top: 16px;
+  text-align: center;
+  color: #aaa;
+  text-decoration: none;
+}

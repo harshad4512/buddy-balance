@@ -1,0 +1,7 @@
+/project
+ ├── index.html        // Welcome page
+ ├── habits.html       // Next page (empty for now)
+ ├── css/
+ │    └── style.css
+ └── js/
+      └── welcome.js

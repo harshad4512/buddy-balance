@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buddy Balance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="welcome.css">
+</head>
+
+<body>
+
+  <!-- BACKGROUND ANIMATION -->
+  <div class="bg-animation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="welcome-wrapper">
+
+    <!-- LOGO -->
+    <h1 class="logo">
+      Buddy<span>Balance</span>
+    </h1>
+
+    <!-- TAGLINE -->
+    <p class="tagline">
+      Build discipline. Track habits. Balance your life.
+    </p>
+
+    <!-- CTA -->
+    <button class="start-btn" id="startBtn">
+      Get Started
+    </button>
+
+  </div>
+
+  <script>
+    document.getElementById("startBtn").addEventListener("click", () => {
+      window.location.href = "auth.html";
+    });
+  </script>
+
+</body>
+</html>

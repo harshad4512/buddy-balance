@@ -1,0 +1,288 @@
+/* ================= RESET ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* ================= BACKGROUND ANIMATION ================= */
+
+.bg-animation {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bg-animation span {
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(0,200,83,0.18), transparent 70%);
+  border-radius: 50%;
+  animation: float 18s infinite ease-in-out;
+}
+
+.bg-animation span:nth-child(1) {
+  top: -120px;
+  left: -120px;
+}
+
+.bg-animation span:nth-child(2) {
+  bottom: -150px;
+  right: -150px;
+  animation-delay: 6s;
+}
+
+.bg-animation span:nth-child(3) {
+  top: 40%;
+  left: 60%;
+  animation-delay: 12s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0,0) scale(1);
+  }
+  50% {
+    transform: translate(40px,-40px) scale(1.1);
+  }
+  100% {
+    transform: translate(0,0) scale(1);
+  }
+}
+
+/* ================= AUTH WRAPPER ================= */
+
+.auth-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease;
+}
+
+/* ================= LOGO ================= */
+
+.logo {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #00c853;
+  letter-spacing: 1px;
+  margin-bottom: 26px;
+  animation: logoReveal 1s ease forwards, logoPulse 3s ease-in-out infinite;
+}
+
+.logo span {
+  color: #bdbdbd;
+}
+
+@keyframes logoReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes logoPulse {
+  0%,100% { text-shadow: 0 0 0 rgba(0,200,83,0.4); }
+  50% { text-shadow: 0 0 18px rgba(0,200,83,0.6); }
+}
+
+/* ================= AUTH CARD ================= */
+
+.auth-card {
+  width: 360px;
+  background: rgba(17,17,17,0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid #222;
+  border-radius: 20px;
+  padding: 28px;
+  animation: slideUp 1s ease;
+}
+
+.auth-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 22px;
+}
+
+/* ================= INPUTS ================= */
+
+.input-group {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 10px;
+  background: #000;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #fff;
+  outline: none;
+}
+
+.input-group label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: #777;
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: -6px;
+  background: #111;
+  padding: 0 6px;
+  color: #00c853;
+}
+
+/* ================= BUTTON ================= */
+
+.auth-btn {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px;
+  background: #00c853;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 14px 40px rgba(0,200,83,0.35);
+}
+
+.auth-btn:active {
+  transform: scale(0.96);
+}
+
+/* ================= LINKS ================= */
+
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.auth-links a {
+  font-size: 0.7rem;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.auth-links a:hover {
+  color: #00c853;
+}
+
+/* ================= UTILITY ANIMATIONS ================= */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+/* ================= FORM DISPLAY & TRANSITIONS ================= */
+
+/* Keep Signup and Forgot forms hidden by default */
+#signupForm, #forgotForm {
+    display: none;
+}
+
+/* Smooth transition when forms switch */
+.animate {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* ================= PASSWORD STRENGTH METER ================= */
+
+.strength-meter {
+    height: 6px;
+    width: 100%;
+    background: #222; /* Matches your dark theme */
+    margin: -10px 0 15px 0; /* Positioned right under the password input */
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+#strengthBar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s ease, background-color 0.4s ease;
+    border-radius: 10px;
+}
+
+#strengthText {
+    display: block;
+    font-size: 0.65rem;
+    margin-top: -12px;
+    margin-bottom: 15px;
+    text-align: right;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ================= SUCCESS ANIMATION ================= */
+
+/* Triggered by JS when login/signup is successful */
+.success {
+    animation: successPulse 0.6s ease;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); border-color: #00c853; box-shadow: 0 0 20px rgba(0,200,83,0.4); }
+    100% { transform: scale(1); }
+}
+
+/* ================= RESPONSIVE FIX ================= */
+
+@media (max-width: 400px) {
+    .auth-card {
+        width: 90%;
+        padding: 20px;
+    }
+    .logo {
+        font-size: 2.2rem;
+    }
+}

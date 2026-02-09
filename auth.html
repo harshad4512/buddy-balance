@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login – Buddy Balance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="auth.css">
+  
+  <style>
+    /* Ensure only one form is visible at a time */
+    #signupForm, #forgotForm { display: none; }
+    
+    /* Strength Meter Styling */
+    .strength-meter { height: 5px; width: 100%; background: #eee; margin-top: 5px; border-radius: 3px; overflow: hidden; }
+    #strengthBar { height: 100%; width: 0%; transition: 0.3s ease; }
+    #strengthText { font-size: 12px; display: block; margin-top: 4px; }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-animation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="auth-wrapper">
+
+    <h1 class="logo">
+      Buddy<span>Balance</span>
+    </h1>
+
+    <div class="auth-card">
+
+      <form id="loginForm">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Login to continue your journey</p>
+        
+        <div class="input-group">
+          <input type="text" id="username" required>
+          <label>Username</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="password" required>
+          <label>Password</label>
+        </div>
+
+        <button type="submit" class="auth-btn">Login</button>
+
+        <div class="auth-links">
+          <a href="#" id="showSignup">Create account</a>
+          <a href="#" id="forgotPassword">Forgot password?</a>
+        </div>
+      </form>
+
+      <form id="signupForm">
+        <h2>Join Us</h2>
+        <p class="subtitle">Start your fitness tracker today</p>
+        
+        <div class="input-group">
+          <input type="text" id="newUsername" required>
+          <label>Choose Username</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="newPassword" required>
+          <label>Password</label>
+        </div>
+        
+        <div class="strength-meter"><div id="strengthBar"></div></div>
+        <small id="strengthText"></small>
+
+        <button type="submit" class="auth-btn">Register</button>
+
+        <div class="auth-links">
+          <a href="#" id="showLogin">Back to Login</a>
+        </div>
+      </form>
+
+      <form id="forgotForm">
+        <h2>Reset Password</h2>
+        <p class="subtitle">Enter details to recover access</p>
+        
+        <div class="input-group">
+          <input type="text" id="resetUsername" required>
+          <label>Username</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="resetPassword" required>
+          <label>New Password</label>
+        </div>
+
+        <button type="submit" class="auth-btn">Update Password</button>
+
+        <div class="auth-links">
+          <a href="#" id="backToLogin">Back to Login</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+
+</body>
+</html>
