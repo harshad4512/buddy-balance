@@ -809,3 +809,141 @@ button:active {
   background: #1a1a1a;
   color: #fff;
 }
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .sidebar,
+  .rightbar {
+    position: static;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .dashboard {
+    width: 100%;
+  }
+}
+.grid-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  min-width: 700px;
+}
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 16px;
+    background: #111;
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+}
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  /* Layout becomes single column */
+  .layout {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 16px;
+  }
+
+  /* Navbar */
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  /* Sidebar & Rightbar move below */
+  .sidebar,
+  .rightbar {
+    width: 100%;
+    position: static;
+    order: 2;
+  }
+
+  .dashboard {
+    order: 1;
+    width: 100%;
+  }
+
+  /* Profile section center */
+  .profile {
+    align-items: center;
+  }
+
+  /* Charts fit mobile */
+  .daily-bars,
+  .weekly-bars {
+    height: 100px;
+    padding: 10px;
+  }
+
+  /* Habit table scroll */
+  .grid-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+  }
+
+  table {
+    min-width: 720px; /* forces horizontal scroll */
+  }
+
+  /* Header stack */
+  .dashboard header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  /* Selectors wrap */
+  .selectors {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Logout button full width */
+  .logout-btn {
+    align-self: stretch;
+    text-align: center;
+  }
+
+  /* Navbar menu (already exists, refine) */
+  .menu {
+    position: absolute;
+    top: 64px;
+    right: 16px;
+    flex-direction: column;
+    width: 200px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 10px;
+    display: none;
+    z-index: 200;
+  }
+
+  .menu li a {
+    padding: 10px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+}
