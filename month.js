@@ -244,20 +244,24 @@ document.addEventListener("DOMContentLoaded", () => {
         elements.yearSelect.addEventListener("change", render);
     }
 
-    // Input
-    if (elements.habitInput) {
-        elements.habitInput.addEventListener("keydown", e => {
-            if (e.key === "Enter" && elements.habitInput.value.trim()) {
-                habits.push(elements.habitInput.value.trim());
-                elements.habitInput.value = "";
-                saveUserData();
-                renderHabitList();
-                render();
-            }
-        });
-    }
+// Input
+if (elements.habitInput) {
+    elements.habitInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault(); // 🔑 prevents mobile submit
+            const value = elements.habitInput.value.trim();
+            if (!value) return;
 
-    // Profile
+            habits.push(value);
+            elements.habitInput.value = "";
+            saveUserData();
+            renderHabitList();
+            render();
+        }
+    });
+}
+
+// Profile
     if (userData.profileImg && elements.profileImg) {
         elements.profileImg.src = userData.profileImg;
         elements.profileImg.style.display = "block";
