@@ -947,95 +947,108 @@ table {
     display: block;
   }
 }
-/* Add Habit Bar – universal */
-.add-habit-bar {
-  position: sticky;
-  bottom: 0;
-  display: flex;
-  gap: 10px;
-  padding: 12px;
-  background: #ffffff;
-  border-top: 1px solid #e5e7eb;
-}
+/* ================= HABIT ADD ANIMATIONS ================= */
 
-/* Input */
-.add-habit-bar input {
-  flex: 1;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-/* Button */
-.add-habit-bar button {
-  padding: 12px 18px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: none;
-  background: #4f46e5;
-  color: white;
-  cursor: pointer;
-}
-
-/* Habit list spacing */
-#habitList {
-  padding: 16px;
-  list-style: none;
+/* Sidebar habit animation */
+@keyframes habitSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 #habitList li {
-  padding: 12px;
-  margin-bottom: 8px;
-  background: #f3f4f6;
-  border-radius: 8px;
+  animation: habitSlideIn 0.25s ease;
 }
 
-/* Mobile tweaks */
-@media (max-width: 600px) {
-  .add-habit-bar {
-    position: fixed;
-    width: 100%;
+/* Grid row animation */
+@keyframes gridRowIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+tbody tr {
+  animation: gridRowIn 0.25s ease;
+}
+/* Input feedback when habit added */
+.add-habit-bar input.just-added {
+  border-color: var(--brand-green);
+  box-shadow: 0 0 0 2px rgba(0, 200, 83, 0.25);
+  transition: box-shadow 0.2s ease;
+}
+/* Weekly Bar Specifics */
+.weekly-bars .day-bar {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.weekly-bars .week-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50px;
+}
+
+/* Today Box highlight */
+#dailyPercent {
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(0, 200, 83, 0.4);
+}
+/* Animated Navigation Links */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
     left: 0;
-  }
-
-  #habitList {
-    padding-bottom: 100px;
-  }
+    background-color: #00c853;
+    transition: width 0.3s ease;
 }
-/* Habit input row */
-.habit-input-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.nav-link:hover::after {
+    width: 100%;
 }
 
-/* Input */
-.habit-input-row input {
-  flex: 1;
-  padding: 10px 14px;
-  font-size: 14px;
-  border-radius: 10px;
-  border: 1px solid #333;
-  background: #0f0f0f;
-  color: #fff;
+/* Themed Select Buttons */
+.themed-select {
+    background: #1a1a1a;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.themed-select:hover {
+    border-color: #00c853;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 200, 83, 0.2);
 }
 
-/* Small arrow button */
-#habitArrow {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: none;
-  background: #00c853;
-  color: #000;
-  font-size: 18px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Top 10 Habits Styling */
+.top-habits-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 8px;
+    background: #161616;
+    border-radius: 8px;
+    animation: habitSlideIn 0.3s ease forwards;
 }
-
-#habitArrow:active {
-  transform: scale(0.9);
+.top-habits-list li strong {
+    color: #00c853;
 }

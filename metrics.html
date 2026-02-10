@@ -1,92 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <nav class="navbar">
-  <button class="menu-btn" id="menuBtn">☰</button>
-
-  <ul class="menu" id="menu">
-    <li><a href="habits.html">Habit Tracker</a></li>
-    <li><a href="metrics.html">Body Metrics</a></li>
-    <li><a href="trainer.html">Personal Trainer</a></li>
-  </ul>
-</nav>
-
   <meta charset="UTF-8">
-  <title>Body Metrics</title>
+  <title>Body Metrics – Buddy Balance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<script>
-  const user = localStorage.getItem("authUser");
-  if (!user) {
-    window.location.href = "auth.html";
-  }
-</script>
+<div class="bg-animation"><span></span><span></span><span></span></div>
 
-<div class="metrics-container">
+<nav class="navbar">
+  <div class="nav-left"><span class="brand">Buddy<span>Balance</span></span></div>
+  <button class="menu-btn" id="menuBtn">☰</button>
+  <ul class="menu" id="menu">
+    <li><a href="habits.html" class="nav-link">Habit Tracker</a></li>
+    <li><a href="metrics.html" class="nav-link active">Body Metrics</a></li>
+    <li><a href="trainer.html" class="nav-link">Personal Trainer</a></li>
+  </ul>
+</nav>
 
-  <h2>Body Metrics</h2>
+<div class="layout" style="justify-content: center; align-items: flex-start; padding-top: 40px;">
+  
+  <main class="metrics-container card" style="width: 100%; max-width: 500px; animation: fadeIn 0.5s ease;">
+    
+    <header class="dashboard-header" style="border-bottom: 1px solid #222; margin-bottom: 20px; padding-bottom: 15px;">
+      <div>
+        <h2 style="margin: 0;">Body Metrics</h2>
+        <p class="subtitle">Analyze your physical progress.</p>
+      </div>
+      
+      <div class="today-box" style="min-width: 120px;">
+        <small style="color: #aaa; display: block; margin-bottom: 2px; font-size: 10px;">Daily Tasks Completion</small>
+        <div id="dailyPercent" style="font-weight: 700; color: #00c853; font-size: 1.2rem;">0%</div>
+      </div>
+    </header>
 
-  <form id="metricsForm">
+    <form id="metricsForm">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div class="input-group">
+          <label>Height (cm)</label>
+          <input type="number" id="height" class="themed-select" style="width: 100%;" required>
+        </div>
+        <div class="input-group">
+          <label>Weight (kg)</label>
+          <input type="number" id="weight" class="themed-select" style="width: 100%;" required>
+        </div>
+      </div>
 
-    <label>Height (cm)</label>
-    <input type="number" id="height" required>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+        <div class="input-group">
+          <label>Age</label>
+          <input type="number" id="age" class="themed-select" style="width: 100%;" required>
+        </div>
+        <div class="input-group">
+          <label>Gender</label>
+          <select id="gender" class="themed-select" style="width: 100%;">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
 
-    <label>Weight (kg)</label>
-    <input type="number" id="weight" required>
+      <div class="input-group" style="margin-top: 15px; margin-bottom: 20px;">
+        <label>Activity Level</label>
+        <select id="activity" class="themed-select" style="width: 100%;">
+          <option value="1.2">Sedentary (Little to no exercise)</option>
+          <option value="1.375">Lightly Active (1-3 days/week)</option>
+          <option value="1.55">Moderately Active (3-5 days/week)</option>
+          <option value="1.725">Very Active (6-7 days/week)</option>
+        </select>
+      </div>
 
-    <label>Age</label>
-    <input type="number" id="age" required>
+      <button type="submit" class="primary-btn" style="width: 100%; padding: 12px; font-weight: 700;">Calculate My Metrics</button>
+    </form>
 
-    <label>Gender</label>
-    <select id="gender">
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-    </select>
+    <div class="results" style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #222;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+        <div class="card" style="background: #161616; padding: 10px; text-align: center; border: 1px solid #222;">
+          <small style="color: #888; font-size: 0.7rem;">BMI</small>
+          <div id="bmiValue" style="font-size: 1.2rem; font-weight: 700; color: #00c853;">-</div>
+          <small id="bmiCategory" style="font-size: 0.6rem; color: #aaa;">-</small>
+        </div>
+        <div class="card" style="background: #161616; padding: 10px; text-align: center; border: 1px solid #222;">
+          <small style="color: #888; font-size: 0.7rem;">Body Fat</small>
+          <div id="fatValue" style="font-size: 1.2rem; font-weight: 700; color: #00c853;">-</div>
+          <small style="font-size: 0.6rem; color: #aaa;">Percentage %</small>
+        </div>
+        <div class="card" style="background: #161616; padding: 10px; text-align: center; border: 1px solid #222;">
+          <small style="color: #888; font-size: 0.7rem;">Daily Calories</small>
+          <div id="calorieValue" style="font-size: 1.2rem; font-weight: 700; color: #00c853;">-</div>
+          <small style="font-size: 0.6rem; color: #aaa;">kCal / Day</small>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 20px; background: rgba(255,235,59,0.05); padding: 10px; border-radius: 8px;">
+        <p style="font-size: 0.75rem; color: #ffeb3b; margin: 0;">
+          ⚠️ <strong>Note:</strong> These are estimated calculated values based on standard formulas. For clinical accuracy, consult a health professional.
+        </p>
+        <p style="margin-top: 5px; font-size: 0.7rem; color: #888;">
+          Estimated BMR: <span id="bmrValue" style="color: #fff;">-</span> kCal
+        </p>
+      </div>
+    </div>
 
-    <label>Activity Level</label>
-    <select id="activity">
-      <option value="1.2">Sedentary</option>
-      <option value="1.375">Lightly Active</option>
-      <option value="1.55">Moderately Active</option>
-      <option value="1.725">Very Active</option>
-    </select>
-
-    <button type="submit">Calculate</button>
-
-  </form>
-
-  <div class="results">
-    <p><strong>BMI:</strong> <span id="bmiValue">-</span></p>
-    <p><strong>Category:</strong> <span id="bmiCategory">-</span></p>
-    <p><strong>BMR:</strong> <span id="bmrValue">-</span></p>
-    <p><strong>Daily Calories:</strong> <span id="calorieValue">-</span></p>
-  </div>
-
-  <a href="habits.html" class="back-link">← Back to Dashboard</a>
-
+    <a href="habits.html" class="back-link" style="margin-top: 20px; color: #888; text-decoration: none; display: block; text-align: center; font-size: 0.9rem;">← Back to Dashboard</a>
+  </main>
 </div>
 
 <script src="metrics.js"></script>
 <script>
   const menuBtn = document.getElementById("menuBtn");
   const menu = document.getElementById("menu");
-
-  menuBtn.addEventListener("click", () => {
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!menu.contains(e.target) && e.target !== menuBtn) {
-      menu.style.display = "none";
-    }
-  });
+  menuBtn.onclick = () => menu.style.display = menu.style.display === "block" ? "none" : "block";
 </script>
-
 </body>
 </html>

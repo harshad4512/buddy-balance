@@ -1,67 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
   <meta charset="UTF-8">
-  <title>Personal Trainer</title>
+  <title>AI Personal Trainer – Buddy Balance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme.css">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<script>
-  if (!localStorage.getItem("authUser")) {
-    window.location.href = "auth.html";
-  }
-</script>
+<div class="bg-animation"><span></span><span></span><span></span></div>
 
 <nav class="navbar">
-  <span class="brand">Buddy Balance</span>
-  <ul class="menu">
-    <li><a href="habits.html">Habit Tracker</a></li>
-    <li><a href="metrics.html">Body Metrics</a></li>
-    <li><a href="trainer.html" class="active">Personal Trainer</a></li>
+  <div class="nav-left"><span class="brand">Buddy<span>Balance</span></span></div>
+  <button class="menu-btn" id="menuBtn">☰</button>
+  <ul class="menu" id="menu">
+    <li><a href="habits.html" class="nav-link">Habit Tracker</a></li>
+    <li><a href="metrics.html" class="nav-link">Body Metrics</a></li>
+    <li><a href="trainer.html" class="nav-link active">Personal Trainer</a></li>
   </ul>
 </nav>
 
-<div class="trainer-container">
+<div class="layout" style="padding: 20px; gap: 20px;">
+  
+  <main class="dashboard card" style="flex: 1; display: flex; flex-direction: column; padding: 0; overflow: hidden;">
+    <header class="dashboard-header" style="padding: 20px; border-bottom: 1px solid #222;">
+      <div>
+        <h2 style="margin: 0;">AI Personal Trainer</h2>
+        <div style="display: flex; gap: 15px; margin-top: 10px;">
+          <select id="langSelect" class="themed-select" style="padding: 4px 8px; font-size: 0.8rem;">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="mr">Marathi</option>
+          </select>
+          <label style="font-size: 0.8rem; display: flex; align-items: center; gap: 5px;">
+            <input type="checkbox" id="voiceToggle" checked> Voice Trainer
+          </label>
+        </div>
+      </div>
+      <div class="today-box">
+        <small style="color: #aaa; display: block; font-size: 10px;">Daily Progress</small>
+        <div id="dailyPercent" style="font-weight: 700; color: #00c853; font-size: 1.2rem;">0%</div>
+      </div>
+    </header>
 
-  <h2>Personal Trainer</h2>
-<select id="langSelect" class="lang-select">
-  <option value="en">English</option>
-  <option value="hi">Hindi</option>
-  <option value="mr">Marathi</option>
-</select>
-<label class="voice-toggle">
-  <input type="checkbox" id="voiceToggle" checked>
-  Voice Trainer
-</label>
+    <div id="chatBox" style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background: rgba(0,0,0,0.2);">
+      </div>
 
-  <!-- QUICK QUESTIONS -->
-  <div class="quick-questions">
-    <button data-q="habit">Analyze my habits</button>
-    <button data-q="body">Analyze my body</button>
-    <button data-q="workout">Workout plan</button>
-    <button data-q="diet">Diet plan</button>
-    <button data-q="weekly">Weekly advice</button>
-  </div>
-<button id="downloadReport" class="report-btn">
-  Download Weekly Report (PDF)
-</button>
+    <div class="quick-questions" style="padding: 10px 20px; display: flex; gap: 8px; flex-wrap: wrap; border-top: 1px solid #222;">
+      <button class="themed-select" style="font-size: 0.75rem;" data-q="habit">Analyze My Habits</button>
+      <button class="themed-select" style="font-size: 0.75rem;" data-q="body">Analyze My Body</button>
+      <button class="themed-select" style="font-size: 0.75rem;" data-q="workout">My Dynamic Workout</button>
+      <button class="themed-select" style="font-size: 0.75rem;" data-q="diet">My Dynamic Diet</button>
+    </div>
 
-  <!-- CHAT -->
-  <div class="chat-box" id="chatBox"></div>
+    <div style="padding: 20px; border-top: 1px solid #222; display: flex; gap: 10px;">
+      <input type="text" id="userQuestion" class="themed-select" placeholder="Ask your trainer about your goals..." style="flex: 1; margin: 0;">
+      <button id="sendBtn" class="primary-btn" style="padding: 10px 25px;">Send</button>
+    </div>
+  </main>
 
-  <!-- INPUT -->
-  <div class="chat-input">
-    <input id="userQuestion" placeholder="Ask your trainer..." />
-    <button id="sendBtn">Send</button>
-  </div>
-
+  <aside class="rightbar card" style="width: 300px;">
+    <h3 class="section-title">Trainer Tools</h3>
+    <button id="downloadReport" class="primary-btn" style="width: 100%; margin-bottom: 20px; background: #333; font-size: 0.8rem;">
+      📥 Download Full Health PDF
+    </button>
+    <div class="card" style="background: #161616; padding: 15px; border: 1px solid #222;">
+      <strong style="color: #00c853; display: block; margin-bottom: 5px;">Smart Advice:</strong>
+      <p id="sidebarTip" style="font-size: 0.85rem; color: #ccc; margin: 0;">Updating based on your metrics...</p>
+    </div>
+  </aside>
 </div>
 
 <script src="trainer.js"></script>
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const menu = document.getElementById("menu");
+  menuBtn.onclick = () => menu.style.display = menu.style.display === "block" ? "none" : "block";
+</script>
 </body>
 </html>
