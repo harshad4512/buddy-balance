@@ -298,24 +298,29 @@ if (elements.habitInput) {
     renderHabitList();
     render();
 });
-const addBtn = document.getElementById("addHabitBtn");
-const input = document.getElementById("habitInput");
-const list = document.getElementById("habitList");
+const habitInput = document.getElementById("habitInput");
+const habitArrow = document.getElementById("habitArrow");
+const habitList = document.getElementById("habitList");
 
 function addHabit() {
-  const value = input.value.trim();
+  const value = habitInput.value.trim();
   if (!value) return;
 
   const li = document.createElement("li");
   li.textContent = value;
-  list.appendChild(li);
+  habitList.appendChild(li);
 
-  input.value = "";
+  habitInput.value = "";
 }
 
-addBtn.addEventListener("click", addHabit);
-addBtn.addEventListener("touchstart", addHabit);
-
-input.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") addHabit();
+/* Enter key */
+habitInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    addHabit();
+  }
 });
+
+/* Arrow click / tap */
+habitArrow.addEventListener("click", addHabit);
+habitArrow.addEventListener("touchstart", addHabit);
