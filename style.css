@@ -947,3 +947,59 @@ table {
     display: block;
   }
 }
+/* Add Habit Bar – universal */
+.add-habit-bar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Input */
+.add-habit-bar input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Button */
+.add-habit-bar button {
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  cursor: pointer;
+}
+
+/* Habit list spacing */
+#habitList {
+  padding: 16px;
+  list-style: none;
+}
+
+#habitList li {
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .add-habit-bar {
+    position: fixed;
+    width: 100%;
+    left: 0;
+  }
+
+  #habitList {
+    padding-bottom: 100px;
+  }
+}

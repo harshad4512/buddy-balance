@@ -298,3 +298,24 @@ if (elements.habitInput) {
     renderHabitList();
     render();
 });
+const addBtn = document.getElementById("addHabitBtn");
+const input = document.getElementById("habitInput");
+const list = document.getElementById("habitList");
+
+function addHabit() {
+  const value = input.value.trim();
+  if (!value) return;
+
+  const li = document.createElement("li");
+  li.textContent = value;
+  list.appendChild(li);
+
+  input.value = "";
+}
+
+addBtn.addEventListener("click", addHabit);
+addBtn.addEventListener("touchstart", addHabit);
+
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") addHabit();
+});
